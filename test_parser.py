@@ -9,19 +9,19 @@ def ensure(condition, message):
         print('*** 测试成功 ***')
 
 
-def t_common_element():
+def test_common_element():
     s1 = '''
-        "employees": [
+    "employees": [
         { "firstName":"John" , "lastName":"Doe" },
-        { "firstName":"Anna" , "lastName":"Smith" }
+        { "firstName":"Anna" , "lastName":"Smith" }],
     '''
-    s2 = '123 , "lastName":"Smith" }'
+    s2 = '123 , "lastName":"Smith" '
 
     ensure(common_element(s1) == '"employees"', 'common_element 测试1')
     ensure(common_element(s2) == '123', 'common_element 测试2')
 
 
-def t_json_list():
+def test_json_list():
     s1 = '''
     {
         "employees": [
@@ -37,24 +37,26 @@ def t_json_list():
     print(json_list(s1))
 
 
-def t_tree():
-    s1 = '''{
-"employees": [
-{ "firstName":-12.34 , "lastName":null },
-{ "firstName":true , "lastName":["Smith", 123] }
-]
-}'''
+def test_tree():
+    s1 = '''
+    {
+        "employees": [
+        { "firstName":-12.34 , "lastName":null },
+        { "firstName":true , "lastName":["Smith", 123] }
+        ]
+    }
+    '''
     # s1 = '''{"employees": [{ "firstName":-12.34 , "lastName":null }]}'''
 
     print('>>>')
     print(tree(s1))
 
 
-def t():
-    t_common_element()
-    t_json_list()
-    t_tree()
+def test():
+    test_common_element()
+    test_json_list()
+    test_tree()
 
 
 if __name__ == '__main__':
-    t()
+    test()
