@@ -10,46 +10,55 @@ def ensure(condition, message):
 
 
 def test_common_element():
-    s1 = '''
-    "employees": [
-        { "firstName":"John" , "lastName":"Doe" },
-        { "firstName":"Anna" , "lastName":"Smith" }],
-    '''
-    s2 = '123 , "lastName":"Smith" '
+    s1 = '''"employees": [
+{ "firstName":"John" , "lastName":"Doe" },
+{ "firstName":"Anna" , "lastName":"Smith" }
+'''
+    s2 = '123 , "lastName":"Smith" }'
 
     ensure(common_element(s1) == '"employees"', 'common_element 测试1')
     ensure(common_element(s2) == '123', 'common_element 测试2')
 
 
 def test_json_list():
-    s1 = '''
-    {
-        "employees": [
-        { "firstName":-12.34 , "lastName":null },
-        { "firstName":true , "lastName":["Smith", 123] }
-        ]
-    }
-    '''
-    # l1 = ['{', '"employees"', ':', '[', '{', '"firstName"', ':', '"John"', ',', '"lastName"', ':', '"Doe"', '}', ',', '{', '"firstName"', ':', '123', ',', '"lastName"', ':', '"Smith"', '}', ']', '}']
-
-    print(s1)
-    print('>>>')
-    print(json_list(s1))
+    s1 = '''{
+"employees": [
+{ "firstName":-12.34 , "lastName":null },
+{ "firstName":true , "lastName":["Smith", 123] }
+]
+}'''
 
 
 def test_tree():
-    s1 = '''
-    {
-        "employees": [
-        { "firstName":-12.34 , "lastName":null },
-        { "firstName":true , "lastName":["Smith", 123] }
-        ]
-    }
-    '''
-    # s1 = '''{"employees": [{ "firstName":-12.34 , "lastName":null }]}'''
-
+    s1 = '''{
+"employees": [
+{ "firstName":-12.34 , "lastName":null },
+{ "firstName":true , "lastName":["Smith", 123] }
+]
+}'''
+    print('字符串：', s1)
     print('>>>')
-    print(tree(s1))
+    print(json_list(s1))
+    print('>>>')
+    print('结果：', tree(s1))
+
+    s2 = '''{
+   "achievement" : [ "ach1", "ach2", "ach3" ],
+   "age" : 23,
+   "name" : "Tsybius",
+   "partner" : {
+      "partner_age" : 21,
+      "partner_name" : "Galatea",
+      "partner_sex_is_male" : false
+   },
+   "sex_is_male" : true
+}'''
+    print('\n\n')
+    print('字符串：', s2)
+    print('>>>')
+    print(json_list(s2))
+    print('>>>')
+    print('结果：', tree(s2))
 
 
 def test():

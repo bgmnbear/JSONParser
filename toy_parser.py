@@ -1,3 +1,6 @@
+from utils import log
+
+
 def string_element(s):
     r = '"'
     # 判断字段中是否包含引号
@@ -119,6 +122,7 @@ def dict_element(l):
     r = {}
     count = 0
     self_count = 0
+    offset = 2
     for i, e in enumerate(l):
         self_count += 1
         if count > 0:
@@ -128,9 +132,9 @@ def dict_element(l):
             break
         else:
             k = e
-            v, child_count = parser(l[i + 2:])
+            v, child_count = parser(l[i + offset:])
             r[k] = v
-            count += child_count + 2
+            count += (child_count + offset)
             if l[i + count + 1] == ',':
                 count += 1
     return r, self_count
@@ -141,7 +145,6 @@ def parser(l):
     if l[0] == '{':
         r, child_count = dict_element(l[1:])
         c = child_count
-        pass
     elif l[0] == '[':
         r, child_count = list_element(l[1:])
         c = child_count
